@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - UpToSkill</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 24px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px 15px 12px 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      .input-group input:focus {
+        border-color: #2ecc71;
+        outline: none;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 15px;
+      }
+
+      .login-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .forgot-password {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .forgot-password a {
+        color: #e74c3c;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .register-link {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      .register-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .register-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .error-message {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email" required />
+          <div class="error-message" id="emailError">
+            Please enter a valid email address
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <div class="error-message" id="passwordError">
+            Please enter your password
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+
+        <div class="forgot-password">
+          <a href="#" id="forgotPassword">Forget Password?</a>
+        </div>
+
+        <div class="register-link">Don't have an account?</div>
+        <button type="button" class="register-btn" id="registerBtn">
+          Register
+        </button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          let isValid = true;
+
+          // Reset all error messages
+          document.querySelectorAll(".error-message").forEach((error) => {
+            error.style.display = "none";
+          });
+
+          // Validate Email
+          const email = document.getElementById("email").value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            document.getElementById("emailError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Password
+          const password = document.getElementById("password").value;
+          if (password.length < 1) {
+            document.getElementById("passwordError").style.display = "block";
+            isValid = false;
+          }
+
+          if (isValid) {
+            // Create login data object
+            const loginData = {
+              email,
+              password,
+            };
+
+            // Here you would typically send this data to your backend
+            console.log("Login data:", loginData);
+
+            // For demo purposes, redirect to dashboard
+            alert("Login successful!");
+            window.location.href = "jobs.html";
+          }
+        });
+
+      // Handle register button click
+      document
+        .getElementById("registerBtn")
+        .addEventListener("click", function () {
+          window.location.href = "register.html";
+        });
+
+      // Handle forgot password click
+      document
+        .getElementById("forgotPassword")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          // Implement forgot password functionality
+          alert("Password reset link will be sent to your email");
+        });
+    </script>
+  </body>
+</html>
