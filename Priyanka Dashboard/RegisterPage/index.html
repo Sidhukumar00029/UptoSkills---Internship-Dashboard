@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UpToSkill - Register</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .register-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 24px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px 15px 12px 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      .input-group input:focus {
+        border-color: #2ecc71;
+        outline: none;
+      }
+
+      .register-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 15px;
+      }
+
+      .register-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .forgot-password {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #forgotPassword {
+        color: red;
+        margin-right: 50%;
+      }
+
+      .forgot-password a {
+        color: #666;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .login-link {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .login-btn:hover {
+        background-color: #27ae60;
+      }
+
+      input::placeholder {
+        color: #999;
+      }
+
+      .error-message {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="fullName" placeholder="Full Name" required />
+          <div class="error-message" id="nameError">
+            Please enter your full name
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-building"></i>
+          <input
+            type="text"
+            id="companyName"
+            placeholder="Company Name"
+            required
+          />
+          <div class="error-message" id="companyError">
+            Please enter company name
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-id-badge"></i>
+          <input
+            type="text"
+            id="designation"
+            placeholder="Designation"
+            required
+          />
+          <div class="error-message" id="designationError">
+            Please enter your designation
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-phone"></i>
+          <input
+            type="tel"
+            id="mobileNumber"
+            placeholder="Mobile Number"
+            required
+          />
+          <div class="error-message" id="mobileError">
+            Please enter a valid mobile number
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email" required />
+          <div class="error-message" id="emailError">
+            Please enter a valid email address
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <div class="error-message" id="passwordError">
+            Password must be at least 6 characters
+          </div>
+        </div>
+
+        <button type="submit" class="register-btn">Register</button>
+
+        <div class="forgot-password">
+          <a href="#" id="forgotPassword">Forget Password?</a>
+        </div>
+
+        <div class="login-link">Already have an account?</div>
+        <button type="button" class="login-btn" id="loginBtn">Login</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          let isValid = true;
+
+          // Reset all error messages
+          document.querySelectorAll(".error-message").forEach((error) => {
+            error.style.display = "none";
+          });
+
+          // Validate Full Name
+          const fullName = document.getElementById("fullName").value.trim();
+          if (fullName.length < 2) {
+            document.getElementById("nameError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Company Name
+          const companyName = document
+            .getElementById("companyName")
+            .value.trim();
+          if (companyName.length < 2) {
+            document.getElementById("companyError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Designation
+          const designation = document
+            .getElementById("designation")
+            .value.trim();
+          if (designation.length < 2) {
+            document.getElementById("designationError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Mobile Number
+          const mobileNumber = document
+            .getElementById("mobileNumber")
+            .value.trim();
+          const mobileRegex = /^[0-9]{10}$/;
+          if (!mobileRegex.test(mobileNumber)) {
+            document.getElementById("mobileError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Email
+          const email = document.getElementById("email").value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            document.getElementById("emailError").style.display = "block";
+            isValid = false;
+          }
+
+          // Validate Password
+          const password = document.getElementById("password").value;
+          if (password.length < 6) {
+            document.getElementById("passwordError").style.display = "block";
+            isValid = false;
+          }
+
+          if (isValid) {
+            // Create user object
+            const userData = {
+              fullName,
+              companyName,
+              designation,
+              mobileNumber,
+              email,
+              password,
+            };
+
+            // Here you would typically send this data to your backend
+            console.log("Registration data:", userData);
+
+            // For demo purposes, redirect to login page
+            alert("Registration successful!");
+            window.location.href = "login.html";
+          }
+        });
+
+      // Handle login button click
+      document
+        .getElementById("loginBtn")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
+
+      // Handle forgot password click
+      document
+        .getElementById("forgotPassword")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          // Implement forgot password functionality
+          alert("Forgot password functionality will be implemented here");
+        });
+    </script>
+  </body>
+</html>
