@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dash.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav {
+            width: 200px;
+            background-color: #f4f4f4;
+            height: 100vh;
+            position: fixed;
+            padding-top: 20px;
+        }
+        .nav a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div>UptoSkills</div>
+        <div>Tata Steel</div>
+        <div>
+            <a href="#">Support</a>
+            <a href="#">Profile</a>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <a href="#">Jobs & Internships</a>
+        <a href="#">Engagement Hiring</a>
+    </nav>
+
+    <main class="main">
+        <a href="#" class="button">Post Your Requirements</a>
+        <section class="jobs-list">
+            <!-- Job Listings -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Company</th>
+                        <th>Job Type</th>
+                        <th>Location</th>
+                        <th>Candidates</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Trainee</td>
+                        <td>Tata Steel</td>
+                        <td>Work from office</td>
+                        <td>Various Locations</td>
+                        <td>128</td>
+                    </tr>
+                    <tr>
+                        <td>Business Dev.</td>
+                        <td>PlanetSpark</td>
+                        <td>Work from office</td>
+                        <td>Gurgaon</td>
+                        <td>87</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <nav class="pagination">
+            <!-- Pagination -->
+        </nav>
+    </main>
+
+    <footer class="footer">
+        <div>Current Date and Time: <span id="dateTime"></span></div>
+        <p>&copy; 2025 UptoSkills. All Rights Reserved.</p>
+    </footer>
+
+    <script src="jobs.js"></script>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('dateTime').textContent = now.toLocaleString();
+        }
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
