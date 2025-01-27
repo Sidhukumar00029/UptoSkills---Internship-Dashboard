@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("uptobg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .form-box {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 10px 10px 40px; 
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 10px; 
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #000; 
+    }
+
+    .register-btn {
+      width: 80%;
+      padding: 10px;
+      background-color: #55b6ff;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;  
+    }
+
+    .register-btn:hover {
+        background-color: #110d8c;
+    }
+
+    .login-prompt {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="fullName" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-building"></i>
+          <input type="text" id="companyName" placeholder="Company Name" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-briefcase"></i>
+          <input type="text" id="designation" placeholder="Designation" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-phone"></i>
+          <input type="tel" id="mobileNumber" placeholder="Mobile Number" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-key"></i>
+          <input type="password" id="rePassword" placeholder="Re-enter Password" required>
+        </div>
+        <button type="submit" class="register-btn">Register</button>
+      </form>
+      <p class="login-prompt">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      const rePassword = document.getElementById('rePassword').value;
+      if (password !== rePassword) {
+        alert('Passwords do not match! Please try again.');
+        return;
+      }
+      alert('Registration successful!');
+    });
+  </script>
+</body>
+</html>
