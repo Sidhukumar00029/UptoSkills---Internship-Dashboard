@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs & Internships Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+        }
+
+        /* Main Content */
+        .main {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        /* Jobs Section */
+        .jobs {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .jobs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .jobs-header button {
+            background-color: #ff5722;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .job-card {
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-card h3 {
+            margin: 0;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .job-card span {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .job-card p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .job-card .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-card .buttons .delete {
+            background-color: #ff4444;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .job-card .buttons .all-candidates {
+            background-color: #00c853;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagination button.active {
+            background-color: #00c853;
+            color: #ffffff;
+        }
+        .space{
+            margin:10px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon.social-icons{
+    font-size: 30px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.icon.linkedin {
+    color: #0077b5; /* LinkedIn blue */
+}
+.icon.facebook {
+    color: #3b5998; /* Facebook blue */
+}
+
+.icon.twitter {
+    color: #1da1f2; /* Twitter blue */
+}
+.icon.whatsapp {
+    color:#00c853; /*whatsapp green */
+}
+
+.icon.instagram {
+    color: #e130af; /* Instagram pink */
+}
+.icon.telegram {
+    color:#1da1f2; /* blue color */
+}
+
+.icon:hover {
+    color: #ff6347; /* Change color on hover */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://cdn.razorpay.com/logos/Gp0GT4PUulocmO_large.jpg">
+        <img src="https://itanks.eu/app/uploads/2022/02/Tata-Steel-logo-1.jpeg"> 
+        <div>
+            <a href="#">Support</a>
+           <a href="#">My Profile</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Jobs & Internships</a></li>
+                <li><a href="#">Engagement Hiring</a></li>
+            </ul>
+        </div>
+
+        <!-- Jobs Section -->
+        <div class="jobs">
+            <div class="jobs-header">
+                <h1 align="center">Jobs & Internships</h1>
+                <button align="right">Post Your Requirements</button>
+            </hr>
+            </div>
+
+            <!-- Job Cards -->
+            <div class="job-card">
+                <h3>Trainee <span>Tata Steel</span></h3>
+                <p>Job type: Work from office</p>
+                <p>Working Area: Sanand, Ahmedabad[ITI Female only], Jamshedpur[ITI Male only],&Pantnagar[12th pass & ITI Male only]city:Anywhere in India </p>
+                <p>Posted On: 26 Nov 2024 ,11:23</p>                              
+                  <h4 align="Right">Total 128</h4>
+            <div class="buttons">
+                    <button class="delete">Delete Job</button><br/>
+                  <button class="all-candidates">All Candidates</button>
+                    </div>
+                    <p>share this job:</p>
+                    <hr/>
+                    <div class="social-icons">
+                        <div class="social-icons">
+                            <a href="#" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="icon facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>                     
+                            <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="icon telegram"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+    
+                    </div>
+            
+            </div>
+
+            <div class="job-card">
+                <h3>Business Development Counsellor <span>Planetspark</span></h3>
+                <p>Job type: Work from office</p>
+                <p>Working Area:Office-address: Gurgaon City Anywhere in India</p>
+                <p>Posted On: 30 Nov 2024,15:14</p>
+                <h4 align="Right">Total 65</h4>
+                  <div class="buttons">
+                    <button class="delete">Delete Job</button>
+                    <button class="all-candidates">All Candidates</button>
+                </div>
+                <p>share this job:</p>
+                <hr/>
+                <div class="social-icons">
+                    <div class="social-icons">
+                        <a href="#" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="icon facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>                     
+                        <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="icon telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+              </div>
+
+            <div class="job-card">
+                <h3>Client Relationship Associate <span>Smile India  Trust</span></h3>
+                <p>Job type: Work from office</p>
+                <p>Working Area:Office-address:A100 Sec4,Noida near by sector 16 metro station Posted On: 10 Dec 2024,12:18</p>
+                <h4 align="Right">Total 0</h4>
+                <div class="buttons">
+                    <button class="delete">Delete Job</button>
+                    <button class="all-candidates">All Candidates</button>
+                </div>
+                <p>share this job:</p>
+                <hr/>
+                <div class="social-icons">
+                        <a href="#" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="icon facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>                     
+                        <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="icon telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+  
+            </div>
+            <div>
+               <div class="job-card">
+                 <h3>Management Trainee client Relationship <span>Techsharks 5 services pvt Ltd</span></h3>
+                    <p>Job type: Work from office</p>
+                    <p>Working Area: Office-address:A-1,3rd ,Raja Garden,crossing ,Rajouri Garden,New Delhi,Delhi 110027 posted on: 12 Dec 2024,13:03</p>
+                    <h4 align="Right">Total 9</h4>
+                <div class="buttons">
+                        <button class="delete">Delete Job</button>
+                        <button class="all-candidates">All Candidates</button>
+                    </div>
+                    <p>share this job:</p>
+                    <hr/>
+                    <div>
+                        <div class="social-icons">
+                                <a href="#" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="icon facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>                     
+                                <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="icon telegram"><i class="fab fa-telegram"></i></a>
+                                <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+        
+
+                       
+                </div>
+               <div class="job-card">
+                    <h3>HR Admin Intern <span>procx</span></h3>
+                       <p>Job type: Work from office</p>
+                       <p>Working Area: Office-address:Noida posted on: 12 Dec 2024,17:33</p>
+                       <h4 align="Right">Total 4</h4>
+                       <div class="buttons">
+                           <button class="delete">Delete Job</button>
+                           <button class="all-candidates">All Candidates</button>
+                       </div> 
+                       <p>share this job:</p>
+                      <hr/> 
+                      <div class="social-icons">
+                        <a href="#" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="icon facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>                     
+                        <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="icon telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+
+        <!--Pagination -->
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright© 2025 UptoSkills. All Rights Reserved</p>
+    </footer>
+
+
+</body>
+</html>
