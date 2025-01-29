@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles1.css">
+   
+   
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+
+
+
+        <form action="login.php" method="post" autocomplete="off">
+            <div class="input-container">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password"
+                    required="">
+                <div id="passwordError" class="error-message" style="display: none; color: red;"></div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <!-- Added Forgot Password Button -->
+        <button type="button" onclick="window.location.href='forgotpassword.html';" class="forgot-password-button">Forgot
+            Password?</button>
+        <p class="already-account">Don't have an account?</p>
+        <button type="button" onclick="window.location.href='register.html';" class="register-button">Register</button>
+    </div>
+
+
+</body>
+
+</html>

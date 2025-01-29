@@ -1,45 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <link rel="stylesheet" href="loginn.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            function debounce(func, wait) {
+                let timeout;
+                return function (...args) {
+                    const context = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
+            }
+
+            const invalidDomains = [
+                'gmail.com','gmail.co','ymail.com', 'yahoo.com', 'hotmail.com',
+                'outlook.com', 'live.com', 'aol.com', 'msn.com',
+                'comcast.net', 'verizon.net', 'att.net', 'icloud.com',
+                'me.com', 'mac.com', 'mail.com', 'gmx.com', 'zoho.com',
+                'protonmail.com', 'hushmail.com', 'fastmail.com',
+                'tutanota.com', 'inbox.com', 'mail.ru', 'yandex.com',
+                'qq.com', '126.com', '163.com', 'sina.com', 'yeah.net',
+                'aliyun.com', 'foxmail.com', 'rediffmail.com', 'indiatimes.com',
+                'bigstring.com', 'care2.com'
+            ];
+
+            /*function validateEmail() {
+                const email = $('#email').val();
+                const emailError = $('#emailError');
+                const emailDomain = email.split('@')[1];
+
+                if (invalidDomains.includes(emailDomain)) {
+                    emailError.text("Please use a corporate or official email address.");
+                    emailError.show();
+                } else {
+                    emailError.text("");
+                    emailError.hide();
+                }
+            }*/
+
+            function validateEmail() {
+                //const email = $('#email').val();
+                const email = $('#email').val().trim(); // Trim whitespace
+                const emailError = $('#emailError');
+
+                if (!email) {
+                    emailError.text("Please enter a valid email address.");
+                    emailError.show();
+                    return;
+                }
+
+                const emailParts = email.split('@');
+                if (emailParts.length < 2 || !emailParts[1]) {
+                    emailError.text("Please enter a valid email address.");
+                    emailError.show();
+                    return;
+                }
+
+                const emailDomain = emailParts[1].toLowerCase(); // Convert domain to lowercase
+
+                //const emailDomain = email.split('@')[1];
+                //const emailDomain = email.split('@')[1].toLowerCase(); // Convert to lowercase
+
+                if (invalidDomains.includes(emailDomain)) {
+                    emailError.text("Please use a corporate or official email address.");
+                    emailError.show();
+                    return;
+                }
+
+                // Check if email is already registered
+                $.ajax({
+                    url: 'check_email.php',
+                    type: 'POST',
+                    data: { email: email },
+                    success: function(response) {
+                        if (response === 'exists') {
+                            emailError.text("This email is already registered. Please use a different email address.");
+                            emailError.show();
+                        } else {
+                            emailError.text("");
+                            emailError.hide();
+                        }
+                    }
+                });
+            }
+
+            function validateMobile() {
+                const mobile = $('#mobile').val();
+                const mobileError = $('#mobileError');
+
+                // Regular expression to check if mobile is exactly 10 digits
+                const mobileRegex = /^\d{10}$/;
+
+                if (!mobileRegex.test(mobile)) {
+                    mobileError.text("Please enter a valid 10-digit mobile number.");
+                    mobileError.show();
+                    return;
+                }
+
+                // Check if mobile number is already registered
+                $.ajax({
+                    url: 'check_mobile.php',
+                    type: 'POST',
+                    data: { mobile: mobile },
+                    success: function(response) {
+                        if (response === 'exists') {
+                            mobileError.text("This mobile number is already registered. Please use a different number.");
+                            mobileError.show();
+                        } else {
+                            mobileError.text("");
+                            mobileError.hide();
+                        }
+                    }
+                });
+            }
+
+            function validatePassword() {
+                const password = $('#password').val();
+                const passwordError = $('#passwordError');
+                //const regex = /^(?=.*[A-Z])(?=.*[\W_])(?=.*\d.*\d.*\d.*\d).{5,}$/;
+                const regex = /^(?=.*[A-Z])(?=.*[\W_])(?=.*\d).{5,}$/; // Updated regex for 1 numeric digit
+
+                if (!regex.test(password)) {
+                    passwordError.text("Password must be at least 5 characters long, include at least one uppercase letter, one special character, and 1 numeric digit.");
+                    passwordError.show();
+                } else {
+                    passwordError.text("");
+                    passwordError.hide();
+                }
+            }
+
+            // Use debounce to prevent frequent triggering
+            const debouncedValidateEmail = debounce(validateEmail, 300);
+
+            //$('#email').on('input', validateEmail);
+            $('#email').on('input', debouncedValidateEmail);
+            $('#mobile').on('input', validateMobile); // Mobile validation
+            $('#password').on('input', validatePassword);
+        });
+    </script>
 </head>
 <body>
-  <div class="form-container">
-    <h1> Uptoskills</h1>
-    <h2>Register</h2>
-    <form>
-      <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" id="fullname" placeholder="Full Name" required>
-      </div>
-      <div class="input-group">
-        <i class="fas fa-building icon"></i>
-        <input type="text" id="company" placeholder="Company Name" required>
-      </div>
-      <div class="input-group">
-        <i class="fas fa-suitcase"></i>
-        <input type="text" id="designation" placeholder="Designation" required>
-      </div>
-      <div class="input-group">
-        <i class="fas fa-phone"></i>
-        <input type="tel" id="mobile" placeholder="Mobile Number" required>
-      </div>
-      <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="email" placeholder="Email" required>
-      </div>
-      <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="password" placeholder="Password" required>
-      </div>
-      <button type="submit" class="register-btn">Register</button>
-      <p class="forgot-link">
-        <a href="forgot.html" class="brown">Forgot Password?</a></p>
-      <p class="login-link">Already have an account?</p>
-        <a href="loginn.html" class="login-btn">Login</a>
-  </div>
-</body>
+    <div class="container">
+        <h2>Register</h2>
+
+        
+                <form id="registerForm" action="register.html" method="post" onsubmit="validateForm(event)" autocomplete="off">
+            <div class="input-container">
+                
+                <input type="text" id="full_name" name="full_name" placeholder="Full Name" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+                
+                <input type="text" id="company_name" name="company_name" placeholder="Company Name" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="text" id="designation" name="designation" placeholder="Designation" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" autocomplete="off" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required="">
+            </div>
+            <div class="input-container">
+                
+                <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" required="">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <!-- Added Forgot Password Button -->
+        <button type="button" onclick="window.location.href='forgotpassword.html';" class="forgot-password-button">Forgot Password?</button>        
+        <p class="already-account">Already have an account?</p>
+        <button type="button" onclick="window.location.href='login.html';" class="login-button register-button">Login</button>
+            </div>
+
+</body></html>
