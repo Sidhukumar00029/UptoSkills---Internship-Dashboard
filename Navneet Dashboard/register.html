@@ -1,0 +1,47 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles1.css">
+   
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+
+        
+                <form id="registerForm" action="register.html" method="post" onsubmit="validateForm(event)" autocomplete="off">
+            <div class="input-container">
+                
+                <input type="text" id="full_name" name="full_name" placeholder="Full Name" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+                
+                <input type="text" id="company_name" name="company_name" placeholder="Company Name" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="text" id="designation" name="designation" placeholder="Designation" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" autocomplete="off" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required="">
+            </div>
+            <div class="input-container">
+                
+                <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required="">
+            </div>
+            <div class="input-container">
+               
+                <input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" required="">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <!-- Added Forgot Password Button -->
+        <button type="button" onclick="window.location.href='forgotpassword.html';" class="forgot-password-button">Forgot Password?</button>        
+        <p class="already-account">Already have an account?</p>
+        <button type="button" onclick="window.location.href='login.html';" class="login-button register-button">Login</button>
+            </div>
+
+</body></html>
